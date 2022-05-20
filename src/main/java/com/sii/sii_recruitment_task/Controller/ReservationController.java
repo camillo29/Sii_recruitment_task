@@ -6,6 +6,10 @@ import com.sii.sii_recruitment_task.Model.User;
 import com.sii.sii_recruitment_task.Repository.PrelectionRepository;
 import com.sii.sii_recruitment_task.Repository.UserRepository;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
+import com.sii.sii_recruitment_task.Service.PrelectionService;
+import com.sii.sii_recruitment_task.Service.ReservationService;
+import com.sii.sii_recruitment_task.Service.UserService;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,10 +23,14 @@ import java.time.LocalDate;
 @RequestMapping("/reservations")
 public class ReservationController {
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private PrelectionRepository prelectionRepository;
+    private ReservationService reservationService;
 
+    @PostMapping("/makeReservation")
+    public void makeReservation(@NotNull @RequestBody MakeReservationRequest request) throws Exception{
+        reservationService.makeReservation(request);
+    }
+
+    /*
     @PostMapping("/makeReservation")
     public void makeReservation(@RequestBody MakeReservationRequest request) throws Exception{
         Prelection prelection = prelectionRepository
@@ -68,6 +76,6 @@ public class ReservationController {
         } finally {
             f.close();
         }
-    }
+    }*/
 
 }
