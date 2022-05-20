@@ -1,5 +1,8 @@
 package com.sii.sii_recruitment_task.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -25,4 +28,23 @@ public class User {
     )
     private Set<Prelection> prelections;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Set<Prelection> getPrelections() {
+        return prelections;
+    }
 }

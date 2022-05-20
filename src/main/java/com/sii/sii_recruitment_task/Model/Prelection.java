@@ -1,5 +1,8 @@
 package com.sii.sii_recruitment_task.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -27,5 +30,35 @@ public class Prelection {
     )
     private Set<User> users;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Time getStartHour() {
+        return startHour;
+    }
+
+    public void setStartHour(Time startHour) {
+        this.startHour = startHour;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
 }
