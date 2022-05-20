@@ -1,9 +1,10 @@
 package com.sii.sii_recruitment_task.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
-
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,8 +27,23 @@ public class User {
             joinColumns = @JoinColumn(name = "userId"),
             inverseJoinColumns = @JoinColumn(name = "prelectionId")
     )
-    private Set<Prelection> prelections;
+    private List<Prelection> prelections;
 
+    public User(){}
+
+    public User(String login, String email) {
+        this.login = login;
+        this.email = email;
+        this.prelections = new LinkedList<>();
+    }
+
+    public boolean isGivenHourReserved(Time hour){
+        for(Prelection p: prelections){
+            if(p.getStartHour().equals(hour))
+                return true;
+        }
+        return false;
+    }
     public Long getId() {
         return id;
     }
@@ -44,7 +60,19 @@ public class User {
         return email;
     }
 
-    public Set<Prelection> getPrelections() {
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Prelection> getPrelections() {
         return prelections;
+    }
+
+    public void setPrelections(List<Prelection> prelections) {
+        this.prelections = prelections;
     }
 }
