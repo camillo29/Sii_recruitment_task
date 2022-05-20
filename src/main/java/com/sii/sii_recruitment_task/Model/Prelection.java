@@ -1,11 +1,8 @@
 package com.sii.sii_recruitment_task.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
-
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,7 +25,7 @@ public class Prelection {
             joinColumns = @JoinColumn(name = "prelectionId"),
             inverseJoinColumns = @JoinColumn(name = "userId")
     )
-    private Set<User> users;
+    private List<User> users;
 
     public Long getId() {
         return id;
@@ -54,11 +51,11 @@ public class Prelection {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 }
