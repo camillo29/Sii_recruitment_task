@@ -1,7 +1,7 @@
 package com.sii.sii_recruitment_task.Controller;
 
 import com.sii.sii_recruitment_task.Repository.PrelectionRepository;
-import com.sii.sii_recruitment_task.Responses.GetAllPrelectionsResponse;
+import com.sii.sii_recruitment_task.Responses.GetPrelectionsResponse;
 import com.sii.sii_recruitment_task.Responses.Response;
 import com.sii.sii_recruitment_task.Service.PrelectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,6 @@ public class PrelectionController {
 
     @GetMapping("/conferencePlan")
     public Response getPrelections(){
-        return new GetAllPrelectionsResponse(prelectionService.getPrelections());
+        return new GetPrelectionsResponse(prelectionService.getPrelections());
     }
 }
