@@ -1,23 +1,12 @@
 package com.sii.sii_recruitment_task.Controller;
 
-import com.sii.sii_recruitment_task.FileHandler;
-import com.sii.sii_recruitment_task.Model.Prelection;
-import com.sii.sii_recruitment_task.Model.User;
-import com.sii.sii_recruitment_task.Repository.PrelectionRepository;
-import com.sii.sii_recruitment_task.Repository.UserRepository;
+import com.sii.sii_recruitment_task.Requests.CancelReservationRequest;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
-import com.sii.sii_recruitment_task.Service.PrelectionService;
 import com.sii.sii_recruitment_task.Service.ReservationService;
-import com.sii.sii_recruitment_task.Service.UserService;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/reservations")
@@ -28,6 +17,11 @@ public class ReservationController {
     @PostMapping("/makeReservation")
     public void makeReservation(@NotNull @RequestBody MakeReservationRequest request) throws Exception{
         reservationService.makeReservation(request);
+    }
+
+    @DeleteMapping("/cancelReservation")
+    public void cancelReservation(@NotNull @RequestBody CancelReservationRequest request) throws Exception{
+        reservationService.cancelReservation(request);
     }
 
     /*

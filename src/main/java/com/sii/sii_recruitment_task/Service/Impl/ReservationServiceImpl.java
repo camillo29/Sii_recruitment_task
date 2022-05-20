@@ -3,6 +3,7 @@ package com.sii.sii_recruitment_task.Service.Impl;
 import com.sii.sii_recruitment_task.FileHandler;
 import com.sii.sii_recruitment_task.Model.Prelection;
 import com.sii.sii_recruitment_task.Model.User;
+import com.sii.sii_recruitment_task.Requests.CancelReservationRequest;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
 import com.sii.sii_recruitment_task.Service.PrelectionService;
 import com.sii.sii_recruitment_task.Service.ReservationService;
@@ -56,6 +57,16 @@ public class ReservationServiceImpl implements ReservationService {
         } finally {
             f.close();
         }
+    }
+
+    @Override
+    public void cancelReservation(CancelReservationRequest request) throws Exception{
+        User user = userService.findByLogin(request.getLogin());
+        if(user == null){
+            throw new Exception("No such user!");
+        }
+        user.getPrelections().removeIf(p -> p.getId().equals(request.getPrelectionId()));
+        userService.save(user);
     }
 
 }
