@@ -49,4 +49,9 @@ public class UserServiceImpl implements UserService {
         save(user);
         return true;
     }
+
+    @Override
+    public Long getNumberOfUsers() {
+        return (long) getUsers().size();
+    }
 }

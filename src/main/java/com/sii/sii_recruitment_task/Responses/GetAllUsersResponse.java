@@ -16,6 +16,7 @@ public class GetAllUsersResponse extends Response {
             entities.add(responseUser);
         }
     }
+
     public List getEntities(){
         return entities;
     }

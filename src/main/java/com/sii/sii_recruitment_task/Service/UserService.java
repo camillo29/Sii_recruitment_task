@@ -12,4 +12,5 @@ public interface UserService {
     void validateUser(User user, String email, Time startHour) throws Exception;
     User save(User user);
     boolean changeMail(ChangeMailRequest request);
+    Long getNumberOfUsers();
 }

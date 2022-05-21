@@ -2,6 +2,7 @@ package com.sii.sii_recruitment_task.Controller;
 
 import com.sii.sii_recruitment_task.Requests.CancelReservationRequest;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
+import com.sii.sii_recruitment_task.Responses.GetPrelectionsInterestResponse;
 import com.sii.sii_recruitment_task.Service.ReservationService;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,13 @@ public class ReservationController {
     @DeleteMapping("/cancelReservation")
     public void cancelReservation(@NotNull @RequestBody CancelReservationRequest request) throws Exception{
         reservationService.cancelReservation(request);
+    }
+
+    @GetMapping("/getPrelectionsInterest")
+    public GetPrelectionsInterestResponse getPrelectionsInterest(){
+        return new GetPrelectionsInterestResponse(
+                reservationService.getPrelectionFromPrelectionService(),
+                reservationService.getPrelectionsInterest());
     }
 
     /*

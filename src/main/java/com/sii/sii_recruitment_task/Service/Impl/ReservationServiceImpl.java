@@ -5,6 +5,8 @@ import com.sii.sii_recruitment_task.Model.Prelection;
 import com.sii.sii_recruitment_task.Model.User;
 import com.sii.sii_recruitment_task.Requests.CancelReservationRequest;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
+import com.sii.sii_recruitment_task.Responses.DTO.PrelectionWithPercents;
+import com.sii.sii_recruitment_task.Responses.GetPrelectionsInterestResponse;
 import com.sii.sii_recruitment_task.Service.PrelectionService;
 import com.sii.sii_recruitment_task.Service.ReservationService;
 import com.sii.sii_recruitment_task.Service.UserService;
@@ -12,7 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -67,6 +74,27 @@ public class ReservationServiceImpl implements ReservationService {
         }
         user.getPrelections().removeIf(p -> p.getId().equals(request.getPrelectionId()));
         userService.save(user);
+    }
+
+    @Override
+    public Map<Time,Long> getPrelectionsInterest(){
+        HashMap<Time, Long> reservations = new HashMap<>();
+        reservations.put(Time.valueOf("10:00:00"), getReservationsFromPrelections(Time.valueOf("10:00:00")));
+        reservations.put(Time.valueOf("12:00:00"), getReservationsFromPrelections(Time.valueOf("12:00:00")));
+        reservations.put(Time.valueOf("14:00:00"), getReservationsFromPrelections(Time.valueOf("14:00:00")));
+        return reservations;
+    }
+
+    @Override
+    public Long getReservationsFromPrelections(Time hour){
+        Long reservations = 0L;
+        reservations += prelectionService.getPrelectionsByHour(hour).stream().mapToInt(p->p.getUsers().size()).sum();
+        return reservations;
+    }
+
+    @Override
+    public List<Prelection> getPrelectionFromPrelectionService() {
+        return prelectionService.getPrelections();
     }
 
 }
