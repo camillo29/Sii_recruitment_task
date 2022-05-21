@@ -79,14 +79,14 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public Map<Time,Long> getPrelectionsInterest(){
         HashMap<Time, Long> reservations = new HashMap<>();
-        reservations.put(Time.valueOf("10:00:00"), getReservationsFromPrelections(Time.valueOf("10:00:00")));
-        reservations.put(Time.valueOf("12:00:00"), getReservationsFromPrelections(Time.valueOf("12:00:00")));
-        reservations.put(Time.valueOf("14:00:00"), getReservationsFromPrelections(Time.valueOf("14:00:00")));
+        reservations.put(Time.valueOf("10:00:00"), getReservationsFromPrelectionsByHour(Time.valueOf("10:00:00")));
+        reservations.put(Time.valueOf("12:00:00"), getReservationsFromPrelectionsByHour(Time.valueOf("12:00:00")));
+        reservations.put(Time.valueOf("14:00:00"), getReservationsFromPrelectionsByHour(Time.valueOf("14:00:00")));
         return reservations;
     }
 
     @Override
-    public Long getReservationsFromPrelections(Time hour){
+    public Long getReservationsFromPrelectionsByHour(Time hour){
         Long reservations = 0L;
         reservations += prelectionService.getPrelectionsByHour(hour).stream().mapToInt(p->p.getUsers().size()).sum();
         return reservations;
@@ -95,6 +95,27 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<Prelection> getPrelectionFromPrelectionService() {
         return prelectionService.getPrelections();
+    }
+
+    @Override
+    public Map<String, Long> getTopicReservations(){
+        HashMap<String, Long> reservations = new HashMap<>();
+        reservations.put("Java", getReservationsFromPrelectionsByTopic("Java"));
+        reservations.put("Python", getReservationsFromPrelectionsByTopic("Python"));
+        reservations.put("C#", getReservationsFromPrelectionsByTopic("C#"));
+        return reservations;
+    }
+
+    @Override
+    public Long getReservationsFromPrelectionsByTopic(String topic){
+        Long reservations = 0L;
+        reservations += prelectionService.getPrelectionsByTopic(topic).stream().mapToInt(p->p.getUsers().size()).sum();
+        return reservations;
+    }
+
+    @Override
+    public Long getTotalReservations(){
+        return (long) prelectionService.getPrelections().stream().mapToInt(p->p.getUsers().size()).sum();
     }
 
 }

@@ -23,10 +23,18 @@ public class PrelectionServiceImpl implements PrelectionService {
 
     @Override
     public List<Prelection> getPrelectionsByHour(Time hour){
-        return prelectionRepository.findAll()
+        return prelectionRepository.findAllByStartHour(hour);
+
+        /*return prelectionRepository.findAll()
                 .stream()
                 .filter(prelection -> prelection.getStartHour().equals(hour))
                 .collect(Collectors.toList());
+         */
+    }
+
+    @Override
+    public List<Prelection> getPrelectionsByTopic(String topic){
+        return prelectionRepository.findAllByTopic(topic);
     }
 
     @Override

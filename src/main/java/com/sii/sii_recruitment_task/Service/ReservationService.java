@@ -13,6 +13,9 @@ public interface ReservationService {
     void sendMail(String email, String content) throws Exception;
     void cancelReservation(CancelReservationRequest request) throws Exception;
     Map<Time, Long> getPrelectionsInterest();
-    Long getReservationsFromPrelections(Time hour);
+    Long getReservationsFromPrelectionsByHour(Time hour);
     List<Prelection> getPrelectionFromPrelectionService();
+    Map<String, Long> getTopicReservations();
+    Long getReservationsFromPrelectionsByTopic(String topic);
+    Long getTotalReservations();
 }

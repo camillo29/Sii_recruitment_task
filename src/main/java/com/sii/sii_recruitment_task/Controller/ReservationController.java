@@ -3,6 +3,7 @@ package com.sii.sii_recruitment_task.Controller;
 import com.sii.sii_recruitment_task.Requests.CancelReservationRequest;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
 import com.sii.sii_recruitment_task.Responses.GetPrelectionsInterestResponse;
+import com.sii.sii_recruitment_task.Responses.GetTopicInterestResponse;
 import com.sii.sii_recruitment_task.Service.ReservationService;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class ReservationController {
         return new GetPrelectionsInterestResponse(
                 reservationService.getPrelectionFromPrelectionService(),
                 reservationService.getPrelectionsInterest());
+    }
+
+    @GetMapping("/getTopicInterest")
+    public GetTopicInterestResponse getTopicInterestResponse(){
+        return new GetTopicInterestResponse(
+                reservationService.getTopicReservations(),
+                reservationService.getTotalReservations());
     }
 
     /*
