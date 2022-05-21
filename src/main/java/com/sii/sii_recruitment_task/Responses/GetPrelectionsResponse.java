@@ -11,9 +11,7 @@ public class GetPrelectionsResponse extends Response{
     public GetPrelectionsResponse(List<Prelection> prelections){
         entities = new LinkedList();
         for(Prelection p: prelections){
-            OnlyHourNamePrelection prelection =
-                    new OnlyHourNamePrelection(p.getStartHour(), p.getName());
-            entities.add(prelection);
+            entities.add(new OnlyHourNamePrelection(p.getStartHour(), p.getName()));
         }
     }
     public List getEntities(){
