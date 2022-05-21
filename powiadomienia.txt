@@ -61,3 +61,45 @@ Content: Registration for Python at 12:00:00 successfully made!
 Date:2022-05-21
 To:email3@example.com
 Content: Registration for Python at 14:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 12:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Python at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!
+Date:2022-05-21
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!

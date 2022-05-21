@@ -1,22 +1,20 @@
 package com.sii.sii_recruitment_task.Requests;
 
 public class CancelReservationRequest {
-    private Long prelectionId;
-    private String login;
+    private final Long prelectionId;
+    private final String login;
+
+    public CancelReservationRequest(String login, Long prelectionId) {
+        this.login = login;
+        this.prelectionId = prelectionId;
+    }
 
     public Long getPrelectionId() {
         return prelectionId;
-    }
-
-    public void setPrelectionId(Long prelectionId) {
-        this.prelectionId = prelectionId;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
 }

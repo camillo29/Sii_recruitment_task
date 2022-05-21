@@ -1,7 +1,7 @@
 package com.sii.sii_recruitment_task.Responses;
 
 import com.sii.sii_recruitment_task.Model.Prelection;
-import com.sii.sii_recruitment_task.Responses.DTO.PrelectionWithPercents;
+import com.sii.sii_recruitment_task.Responses.DTO.PrelectionWithPercentsDTO;
 
 import java.sql.Time;
 import java.util.LinkedList;
@@ -18,7 +18,8 @@ public class GetPrelectionsInterestResponse extends Response{
             if(reserv != 0){
                 percents = ((double)p.getUsers().size()/(double)reserv)*100.0f;
             }
-            entities.add(new PrelectionWithPercents(
+            entities.add(new PrelectionWithPercentsDTO(
+                    p.getId(),
                     p.getStartHour(),
                     p.getName(),
                     percents));
