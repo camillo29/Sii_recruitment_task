@@ -12,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Time;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PrelectionServiceImpl implements PrelectionService {
@@ -27,12 +26,6 @@ public class PrelectionServiceImpl implements PrelectionService {
     @Override
     public List<Prelection> getPrelectionsByHour(Time hour){
         return prelectionRepository.findAllByStartHour(hour);
-
-        /*return prelectionRepository.findAll()
-                .stream()
-                .filter(prelection -> prelection.getStartHour().equals(hour))
-                .collect(Collectors.toList());
-         */
     }
 
     @Override
@@ -42,7 +35,9 @@ public class PrelectionServiceImpl implements PrelectionService {
 
     @Override
     public Prelection findById(Long id) throws ResponseStatusException{
-        return prelectionRepository.findById(id).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "No such prelection"));
+        return prelectionRepository.findById(id)
+                .orElseThrow(
+                        ()->new ResponseStatusException(HttpStatus.NOT_FOUND, "No such prelection"));
     }
 
     @Override

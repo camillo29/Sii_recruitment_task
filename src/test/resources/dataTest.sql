@@ -1,0 +1,8 @@
+INSERT INTO Users (id, login, email) VALUES ((SELECT NEXT VALUE FOR hibernate_sequence), 'login1', 'email1@com.pl')
+INSERT INTO Users (id, login, email) VALUES ((SELECT NEXT VALUE FOR hibernate_sequence), 'login2', 'email2@com.pl')
+INSERT INTO Reservations(user_id, prelection_id) VALUES (1, 1)
+INSERT INTO Reservations(user_id, prelection_id) VALUES (1, 4)
+INSERT INTO Reservations(user_id, prelection_id) VALUES (1, 8)
+INSERT INTO Reservations(user_id, prelection_id) VALUES (2, 2)
+INSERT INTO Reservations(user_id, prelection_id) VALUES (2, 4)
+INSERT INTO Reservations(user_id, prelection_id) VALUES (2, 9)
