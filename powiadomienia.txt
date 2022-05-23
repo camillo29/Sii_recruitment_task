@@ -13,3 +13,24 @@ Content: Registration for C# at 14:00:00 successfully made!
 Date:2022-05-23
 To:email2@example.com
 Content: Registration for Python at 14:00:00 successfully made!
+Date:2022-05-23
+To:email2@com.pl
+Content: Registration for C# at 14:00:00 successfully made!
+Date:2022-05-23
+To:email3@com.pl
+Content: Registration for C# at 10:00:00 successfully made!
+Date:2022-05-23
+To:email2@example.com
+Content: Registration for Python at 14:00:00 successfully made!
+Date:2022-05-23
+To:email2@com.pl
+Content: Registration for C# at 14:00:00 successfully made!
+Date:2022-05-23
+To:email10@com.pl
+Content: Registration for C# at 10:00:00 successfully made!
+Date:2022-05-23
+To:email2@com.pl
+Content: Registration for C# at 14:00:00 successfully made!
+Date:2022-05-23
+To:email1@example.com
+Content: Registration for Java at 10:00:00 successfully made!

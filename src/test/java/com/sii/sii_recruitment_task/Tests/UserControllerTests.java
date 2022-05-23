@@ -134,6 +134,21 @@ public class UserControllerTests {
         }
     }
 
+    @Test
+    public void givenEmptyFields_whenChangeMail_thenStatus400(){
+        try {
+            ChangeMailRequest request = new ChangeMailRequest();
+            request.setNewMail("newEmail1@com.pl");
+            mvc.perform(patch("/users/login1500/changeMail")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isBadRequest())
+                    .andDo(print());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 
 }
