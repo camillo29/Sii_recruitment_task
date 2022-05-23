@@ -60,12 +60,14 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void cancelReservation(CancelReservationRequest request) throws Exception{
+    public void cancelReservation(CancelReservationRequest request) throws ResponseStatusException{
         User user = userService.findByLogin(request.getLogin());
         if(user == null){
-            throw new Exception("No such user!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such user!");
         }
-        user.getPrelections().removeIf(p -> p.getId().equals(request.getPrelectionId()));
+        if(!user.getPrelections().removeIf(p -> p.getId().equals(request.getPrelectionId()))){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User dont have reservation for this prelection!");
+        }
         userService.save(user);
     }
 
