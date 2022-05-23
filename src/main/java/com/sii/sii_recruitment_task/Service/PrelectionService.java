@@ -10,4 +10,5 @@ public interface PrelectionService {
     Prelection findById(Long id) throws Exception;
     void validatePrelection(Prelection prelection) throws Exception;
     List<Prelection> getPrelectionsByHour(Time hour);
+    List<Prelection> getPrelectionsByTopic(String topic);
 }

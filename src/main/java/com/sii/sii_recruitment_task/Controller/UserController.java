@@ -1,15 +1,18 @@
 package com.sii.sii_recruitment_task.Controller;
 
+import com.sii.sii_recruitment_task.Model.User;
 import com.sii.sii_recruitment_task.Requests.ChangeMailRequest;
-import com.sii.sii_recruitment_task.Requests.GetUserPrelectionsRequest;
+import com.sii.sii_recruitment_task.Responses.DTO.UserDTO;
+import com.sii.sii_recruitment_task.Responses.EntityResponse;
 import com.sii.sii_recruitment_task.Responses.GetAllUsersResponse;
 import com.sii.sii_recruitment_task.Responses.GetPrelectionsResponse;
-import com.sii.sii_recruitment_task.Responses.MessageResponse;
 import com.sii.sii_recruitment_task.Responses.Response;
 import com.sii.sii_recruitment_task.Service.UserService;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 
 @RestController
@@ -23,18 +26,20 @@ public class UserController {
         return new GetAllUsersResponse(userService.getUsers());
     }
 
-    @GetMapping("/getUserPrelections")
-    public Response getUserPrelections(@NotNull @RequestBody GetUserPrelectionsRequest request){
-        return new GetPrelectionsResponse(userService.findByLogin(request.getLogin()).getPrelections());
+    @GetMapping("/{login}/prelections")
+    public Response getUserPrelections(@PathVariable(name = "login") String login) throws ResponseStatusException{
+        User user = userService.findByLogin(login);
+        if(user == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such user!");
+        return new GetPrelectionsResponse(user.getPrelections());
     }
 
-    @PatchMapping("/changeMail")
-    public Response changeMail(@NotNull @RequestBody ChangeMailRequest request){
-        String message;
-        if(userService.changeMail(request)){
-            message = "Email updated!";
-        } else message = "Email update failed!";
-        return new MessageResponse(message);
+    @PatchMapping("/{login}/changeMail")
+    public Response changeMail(@PathVariable(name = "login") String login,
+                               @NotNull @RequestBody ChangeMailRequest request)
+            throws ResponseStatusException{
+        User user = userService.changeMail(login, request);
+        return new EntityResponse(new UserDTO(user.getId(), user.getLogin(), user.getEmail()));
     }
 
 

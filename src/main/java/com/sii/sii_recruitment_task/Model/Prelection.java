@@ -15,8 +15,8 @@ public class Prelection {
     @Column(name = "start_hour")
     private Time startHour;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "topic")
+    private String topic;
 
     @Column(name = "atendees")
     @ManyToMany
@@ -44,11 +44,11 @@ public class Prelection {
     }
 
     public String getName() {
-        return name;
+        return topic;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.topic = name;
     }
 
     public List<User> getUsers() {

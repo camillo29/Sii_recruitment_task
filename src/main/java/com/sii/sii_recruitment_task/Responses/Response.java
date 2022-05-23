@@ -4,5 +4,5 @@ import java.util.List;
 
 public abstract class Response {
     protected List entities;
-    protected String message;
+    protected Object entity;
 }

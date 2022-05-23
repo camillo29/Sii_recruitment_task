@@ -5,7 +5,9 @@ import com.sii.sii_recruitment_task.Repository.UserRepository;
 import com.sii.sii_recruitment_task.Requests.ChangeMailRequest;
 import com.sii.sii_recruitment_task.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Time;
 import java.util.List;
@@ -26,12 +28,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void validateUser(User user, String email, Time startHour) throws Exception{
+    public void validateUser(User user, String email, Time startHour) throws ResponseStatusException{
         if(!user.getEmail().equals(email)){
-            throw new Exception("Podany login jest już zajęty");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Podany login jest już zajęty");
         }
         if(user.isGivenHourReserved(startHour)){
-            throw new Exception("User have reservation for this hour!");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User have reservation for this hour!");
         }
     }
 
@@ -41,13 +43,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean changeMail(ChangeMailRequest request){
-        User user = findByLogin(request.getLogin());
-        if(user == null || !user.getEmail().equals(request.getOldMail()))
-            return false;
+    public User changeMail(String login, ChangeMailRequest request) throws ResponseStatusException{
+        User user = findByLogin(login);
+        if(user == null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such user!");
+        if(!user.getEmail().equals(request.getOldMail())){
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Old mails are not equal!");
+        }
         user.setEmail(request.getNewMail());
         save(user);
-        return true;
+        return user;
     }
 
     @Override
