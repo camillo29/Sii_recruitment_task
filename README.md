@@ -39,7 +39,11 @@ Responses:
   - 404 NOT FOUND - No such user!
 
 3. Making reservation (POST)
+
+
 http://127.0.0.1:8080/reservations/makeReservation
+
+
 Request body:
 {
     "prelectionId": 1,
@@ -47,7 +51,9 @@ Request body:
     "email": "email1@example.com"
 }
 
+
 ![image](https://user-images.githubusercontent.com/44434406/170020957-c337f55d-974e-4f40-83de-6546c61ebf6d.png)
+
 
 Responses:
   - 201 CREATED
@@ -58,9 +64,13 @@ Responses:
   - 409 CONFLICT - Not enough place in this prelection!
 
 4. Canceling reservation (DELETE) (Must add some reservations first!)
+
+
 http://127.0.0.1:8080/reservations/login1/cancelReservation?prelectionId=1
 
+
 ![image](https://user-images.githubusercontent.com/44434406/170022073-188e28f2-a337-4dba-a63d-9e05811e6646.png)
+
 
 Responses:
   - 204 NO CONTENT
@@ -68,12 +78,17 @@ Responses:
   - 404 NOT FOUND - User dont have reservation for this prelection!
 
 5. Updating user mail (PATCH) (Must add user first!)
+
+
 http://127.0.0.1:8080/users/login1/changeMail
+
+
 Request body:
 {
     "oldMail": "email1@example.com",
     "newMail": "newEmail1@example.com"
 }
+
 
 ![image](https://user-images.githubusercontent.com/44434406/170022467-6fe2bda4-cb76-4b33-a4b8-0e13b2c46159.png)
 
@@ -83,25 +98,38 @@ Responses:
   - 404 NOT FOUND - No such user!
 
 6. List users (GET) (Must add some users first!)
+
+
 http://127.0.0.1:8080/users/getUsers
 
+
 ![image](https://user-images.githubusercontent.com/44434406/170022924-61d94103-8187-40d3-b102-86690a3f8ac7.png)
+
 
 Responses:
   - 200 OK
 
 7. Percents of prelections interest in time segments (GET)
+
+
 http://127.0.0.1:8080/reservations/getPrelectionsInterest
 
+
 ![image](https://user-images.githubusercontent.com/44434406/170023423-4cc31747-b855-45c0-be22-7a1c45a2fd7e.png)
+
 
 Responses:
   - 200 OK
  
+ 
 8. Percents of topic interest (GET)
+
+
 http://127.0.0.1:8080/reservations/getTopicInterest
 
+
 ![image](https://user-images.githubusercontent.com/44434406/170023768-bd13b629-15ba-46a0-afd0-f623a0206df7.png)
+
 
 Responses:
   - 200 OK
