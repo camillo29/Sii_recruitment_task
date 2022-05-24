@@ -1,22 +1,20 @@
 package com.sii.sii_recruitment_task.Requests;
 
 public class ChangeMailRequest {
-    private String oldMail;
-    private String newMail;
+    private final String oldMail;
+    private final String newMail;
+
+    public ChangeMailRequest(String oldMail, String newMail) {
+        this.oldMail = oldMail;
+        this.newMail = newMail;
+    }
 
     public String getOldMail() {
         return oldMail;
-    }
-
-    public void setOldMail(String oldMail) {
-        this.oldMail = oldMail;
     }
 
     public String getNewMail() {
         return newMail;
     }
 
-    public void setNewMail(String newMail) {
-        this.newMail = newMail;
-    }
 }

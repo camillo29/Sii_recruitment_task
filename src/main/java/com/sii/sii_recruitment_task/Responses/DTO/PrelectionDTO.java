@@ -3,9 +3,9 @@ package com.sii.sii_recruitment_task.Responses.DTO;
 import java.sql.Time;
 
 public class PrelectionDTO{
-    private Long id;
-    private Time startHour;
-    private String topic;
+    protected Long id;
+    protected Time startHour;
+    protected String topic;
 
     public PrelectionDTO(Long id, Time startHour, String topic){
         this.id = id;

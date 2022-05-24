@@ -3,7 +3,6 @@ package com.sii.sii_recruitment_task.Model;
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "Prelections")

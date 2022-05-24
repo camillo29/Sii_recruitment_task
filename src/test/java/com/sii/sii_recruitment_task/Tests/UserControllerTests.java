@@ -87,9 +87,7 @@ public class UserControllerTests {
     @Test
     public void givenOKChangeMailRequest_whenChangeMail_thenStatus200(){
         try {
-            ChangeMailRequest request = new ChangeMailRequest();
-            request.setOldMail("email1@com.pl");
-            request.setNewMail("newEmail1@com.pl");
+            ChangeMailRequest request = new ChangeMailRequest("email1@com.pl", "newEmail1@com.pl");
             mvc.perform(patch("/users/login1/changeMail")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -105,9 +103,7 @@ public class UserControllerTests {
     @Test
     public void givenWrongChangeMailRequest_whenChangeMail_thenStatus409(){
         try {
-            ChangeMailRequest request = new ChangeMailRequest();
-            request.setOldMail("wrongEmail1@com.pl");
-            request.setNewMail("newEmail1@com.pl");
+            ChangeMailRequest request = new ChangeMailRequest("wrongEmail1@com.pl","newEmail1@com.pl");
             mvc.perform(patch("/users/login1/changeMail")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -121,9 +117,7 @@ public class UserControllerTests {
     @Test
     public void givenWrongLogin_whenChangeMail_thenStatus404(){
         try {
-            ChangeMailRequest request = new ChangeMailRequest();
-            request.setOldMail("email1@com.pl");
-            request.setNewMail("newEmail1@com.pl");
+            ChangeMailRequest request = new ChangeMailRequest("email1@com.pl", "newEmail1@com.pl");
             mvc.perform(patch("/users/login1500/changeMail")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -137,8 +131,7 @@ public class UserControllerTests {
     @Test
     public void givenEmptyFields_whenChangeMail_thenStatus400(){
         try {
-            ChangeMailRequest request = new ChangeMailRequest();
-            request.setNewMail("newEmail1@com.pl");
+            ChangeMailRequest request = new ChangeMailRequest(null, "newEmail1@com.pl");
             mvc.perform(patch("/users/login1500/changeMail")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
