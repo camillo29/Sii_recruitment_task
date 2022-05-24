@@ -1,4 +1,5 @@
 package com.sii.sii_recruitment_task.Tests;
+import com.sii.sii_recruitment_task.Requests.CancelReservationRequest;
 import com.sii.sii_recruitment_task.Requests.ChangeMailRequest;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
 import com.sii.sii_recruitment_task.Service.UserService;
@@ -19,8 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,11 +46,187 @@ public class ReservationsControllerTests {
     }
 
     @Test
-    public void givenOKMakeReservationRequest_whenMakeReservation_thenStatus201(){
+    public void givenOKMakeReservationRequestWithExistingUser_whenMakeReservation_thenStatus201(){
         try{
             MakeReservationRequest request = new MakeReservationRequest();
-
+            request.setPrelectionId(9L);
+            request.setLogin("login2");
+            request.setEmail("email2@com.pl");
+            mvc.perform(post("/reservations/makeReservation")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isCreated())
+                    .andDo(print());
         }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenOKMakeReservationRequestWithNewUser_whenMakeReservation_thenStatus201(){
+        try{
+            MakeReservationRequest request = new MakeReservationRequest();
+            request.setPrelectionId(3L);
+            request.setLogin("login10");
+            request.setEmail("email10@com.pl");
+            mvc.perform(post("/reservations/makeReservation")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isCreated())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongMakeReservationRequestWithWrongPrelection_whenMakeReservation_thenStatus404(){
+        try{
+            MakeReservationRequest request = new MakeReservationRequest();
+            request.setPrelectionId(18L);
+            request.setLogin("login1");
+            request.setEmail("email1@com.pl");
+            mvc.perform(post("/reservations/makeReservation")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isNotFound())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongMakeReservationRequestWithNoPlace_whenMakeReservation_thenStatus409(){
+        try{
+            MakeReservationRequest request = new MakeReservationRequest();
+            request.setPrelectionId(1L);
+            request.setLogin("login10");
+            request.setEmail("email10@com.pl");
+            mvc.perform(post("/reservations/makeReservation")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isConflict())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongMakeReservationRequestWithNewUserWithUsedLogin_whenMakeReservation_thenStatus409(){
+        try{
+            MakeReservationRequest request = new MakeReservationRequest();
+            request.setPrelectionId(9L);
+            request.setLogin("login5");
+            request.setEmail("email10@com.pl");
+            mvc.perform(post("/reservations/makeReservation")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isConflict())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongMakeReservationRequestWithAlreadyReservedHour_whenMakeReservation_thenStatus409(){
+        try{
+            MakeReservationRequest request = new MakeReservationRequest();
+            request.setPrelectionId(2L);
+            request.setLogin("login1");
+            request.setEmail("email1@com.pl");
+            mvc.perform(post("/reservations/makeReservation")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isConflict())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongMakeReservationRequestWithEmptyFields_whenMakeReservation_thenStatus400(){
+        try{
+            MakeReservationRequest request = new MakeReservationRequest();
+            request.setPrelectionId(5L);
+            request.setEmail("email1@com.pl");
+            mvc.perform(post("/reservations/makeReservation")
+                    .contentType("application/json")
+                    .content(new Gson().toJson(request)))
+                    .andExpect(status().isBadRequest())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenOKCancelRequest_whenCancelReservation_thenStatus204(){
+        try{
+            mvc.perform(delete("/reservations/login1/cancelReservation?prelectionId=1"))
+                    .andExpect(status().isNoContent())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongCancelRequestWithEmptyFields_whenCancelReservation_thenStatus400(){
+        try{
+            mvc.perform(delete("/reservations/login1/cancelReservation"))
+                    .andExpect(status().isBadRequest())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongCancelRequestWithNotExistingUser_whenCancelReservation_thenStatus404(){
+        try{
+            mvc.perform(delete("/reservations/login10/cancelReservation?prelectionId=1"))
+                    .andExpect(status().isNotFound())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenWrongCancelRequestWithNotExistingReservation_whenCancelReservation_thenStatus404(){
+        try{
+            mvc.perform(delete("/reservations/login1/cancelReservation?prelectionId=2"))
+                    .andExpect(status().isNotFound())
+                    .andDo(print());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void whenGetPrelectionsInterest_thenStatus200(){
+        try{
+            mvc.perform(get("/reservations/getPrelectionsInterest"))
+                    .andExpect(status().isOk())
+                    .andDo(print());
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void whenGetTopicInterest_thenStatus200(){
+        try{
+            mvc.perform(get("/reservations/getTopicInterest"))
+                    .andExpect(status().isOk())
+                    .andDo(print());
+
+        } catch(Exception e){
             e.printStackTrace();
         }
     }

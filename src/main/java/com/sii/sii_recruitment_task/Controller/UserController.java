@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/{login}/prelections")
-    public Response getUserPrelections(@PathVariable(name = "login") String login) throws ResponseStatusException{
+    public Response getUserPrelections(@NotNull @PathVariable(name = "login") String login) throws ResponseStatusException{
         User user = userService.findByLogin(login);
         if(user == null)
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No such user!");
@@ -35,9 +35,12 @@ public class UserController {
     }
 
     @PatchMapping("/{login}/changeMail")
-    public Response changeMail(@PathVariable(name = "login") String login,
+    public Response changeMail(@NotNull @PathVariable(name = "login") String login,
                                @NotNull @RequestBody ChangeMailRequest request)
             throws ResponseStatusException{
+        if(request.getNewMail() == null || request.getOldMail() == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Empty fields!");
+        }
         User user = userService.changeMail(login, request);
         return new EntityResponse(new UserDTO(user.getId(), user.getLogin(), user.getEmail()));
     }
