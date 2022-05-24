@@ -1,5 +1,6 @@
-# sii_recruitment_task
-You can run project with one of three ways:
+# sii_recruitment_task README
+## Run README
+#You can run project with one of three ways:
 1. Open project in IntelliJ, set Run configuration as Maven with command line "spring-boot:run"
 ![image](https://user-images.githubusercontent.com/44434406/170015862-8f2b1502-8a33-4af4-8bb1-ef17788768a2.png)
 
@@ -12,16 +13,17 @@ You can run project with one of three ways:
 ![image](https://user-images.githubusercontent.com/44434406/170017964-60cecbbe-55dd-4dde-95fd-722cb8c26ef5.png)
 
 Server runs on port 8080 by default, You can change it in application.properties file in resources directory. 
-To run tests You can:
+#To run tests You can:
 1. Open project in IntelliJ, set Run configuration as Maven with command line "test"
 ![image](https://user-images.githubusercontent.com/44434406/170018106-1782b06d-0468-41d7-a036-ad735968210d.png)
 
 2. Open project directory with command prompt and execute "mvn test"
 ![image](https://user-images.githubusercontent.com/44434406/170018218-d1ac541b-bc0e-4629-a577-dd573448f45b.png)
 
-Example URLs to REST services in Postman:
+##URL Readme
+#Example URLs to REST services in Postman:
 
-1. Conference plan (GET)
+###1. Conference plan (GET)
 http://127.0.0.1:8080/prelections/conferencePlan
 
 ![image](https://user-images.githubusercontent.com/44434406/170019902-de10c053-b296-45c0-8635-21ee15c5d611.png)
@@ -29,16 +31,21 @@ http://127.0.0.1:8080/prelections/conferencePlan
 Responses:
   - 200 OK
 
-2. Viewing User's reservations (GET) (Must add some reservations first!)
+###2. Viewing User's reservations (GET) (Must add some reservations first!)
+
+
 http://127.0.0.1:8080/users/login1/prelections
 
+
 ![image](https://user-images.githubusercontent.com/44434406/170020702-10b5af99-91db-4447-8bc6-5884471c19d0.png)
+
 
 Responses:
   - 200 OK
   - 404 NOT FOUND - No such user!
 
-3. Making reservation (POST)
+
+###3. Making reservation (POST)
 
 
 http://127.0.0.1:8080/reservations/makeReservation
@@ -63,7 +70,7 @@ Responses:
   - 409 CONFLICT - User have reservation for this hour!
   - 409 CONFLICT - Not enough place in this prelection!
 
-4. Canceling reservation (DELETE) (Must add some reservations first!)
+###4. Canceling reservation (DELETE) (Must add some reservations first!)
 
 
 http://127.0.0.1:8080/reservations/login1/cancelReservation?prelectionId=1
@@ -77,7 +84,7 @@ Responses:
   - 404 NOT FOUND - No such user!
   - 404 NOT FOUND - User dont have reservation for this prelection!
 
-5. Updating user mail (PATCH) (Must add user first!)
+###5. Updating user mail (PATCH) (Must add user first!)
 
 
 http://127.0.0.1:8080/users/login1/changeMail
@@ -97,7 +104,7 @@ Responses:
   - 409 CONFLICT - Old mails are not equal!
   - 404 NOT FOUND - No such user!
 
-6. List users (GET) (Must add some users first!)
+###6. List users (GET) (Must add some users first!)
 
 
 http://127.0.0.1:8080/users/getUsers
@@ -109,7 +116,7 @@ http://127.0.0.1:8080/users/getUsers
 Responses:
   - 200 OK
 
-7. Percents of prelections interest in time segments (GET)
+###7. Percents of prelections interest in time segments (GET)
 
 
 http://127.0.0.1:8080/reservations/getPrelectionsInterest
@@ -122,7 +129,7 @@ Responses:
   - 200 OK
  
  
-8. Percents of topic interest (GET)
+###8. Percents of topic interest (GET)
 
 
 http://127.0.0.1:8080/reservations/getTopicInterest
