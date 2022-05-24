@@ -37,8 +37,6 @@ public class UserControllerTests {
     WebApplicationContext context;
     @Autowired
     MockMvc mvc;
-    @Autowired
-    UserService userService;
 
     @Before
     public void setup() {

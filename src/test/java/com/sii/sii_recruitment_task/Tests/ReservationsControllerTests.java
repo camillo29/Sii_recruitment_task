@@ -1,8 +1,5 @@
 package com.sii.sii_recruitment_task.Tests;
-import com.sii.sii_recruitment_task.Requests.CancelReservationRequest;
-import com.sii.sii_recruitment_task.Requests.ChangeMailRequest;
 import com.sii.sii_recruitment_task.Requests.MakeReservationRequest;
-import com.sii.sii_recruitment_task.Service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,10 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
