@@ -23,6 +23,7 @@ Example URLs to REST services in Postman:
 
 1. Conference plan (GET)
 http://127.0.0.1:8080/prelections/conferencePlan
+
 ![image](https://user-images.githubusercontent.com/44434406/170019902-de10c053-b296-45c0-8635-21ee15c5d611.png)
 
 Responses:
@@ -30,6 +31,7 @@ Responses:
 
 2. Viewing User's reservations (GET) (Must add some reservations first!)
 http://127.0.0.1:8080/users/login1/prelections
+
 ![image](https://user-images.githubusercontent.com/44434406/170020702-10b5af99-91db-4447-8bc6-5884471c19d0.png)
 
 Responses:
@@ -44,6 +46,7 @@ Request body:
     "login": "login1",
     "email": "email1@example.com"
 }
+
 ![image](https://user-images.githubusercontent.com/44434406/170020957-c337f55d-974e-4f40-83de-6546c61ebf6d.png)
 
 Responses:
@@ -56,6 +59,7 @@ Responses:
 
 4. Canceling reservation (DELETE) (Must add some reservations first!)
 http://127.0.0.1:8080/reservations/login1/cancelReservation?prelectionId=1
+
 ![image](https://user-images.githubusercontent.com/44434406/170022073-188e28f2-a337-4dba-a63d-9e05811e6646.png)
 
 Responses:
@@ -70,6 +74,7 @@ Request body:
     "oldMail": "email1@example.com",
     "newMail": "newEmail1@example.com"
 }
+
 ![image](https://user-images.githubusercontent.com/44434406/170022467-6fe2bda4-cb76-4b33-a4b8-0e13b2c46159.png)
 
 Responses:
@@ -79,6 +84,7 @@ Responses:
 
 6. List users (GET) (Must add some users first!)
 http://127.0.0.1:8080/users/getUsers
+
 ![image](https://user-images.githubusercontent.com/44434406/170022924-61d94103-8187-40d3-b102-86690a3f8ac7.png)
 
 Responses:
@@ -86,6 +92,7 @@ Responses:
 
 7. Percents of prelections interest in time segments (GET)
 http://127.0.0.1:8080/reservations/getPrelectionsInterest
+
 ![image](https://user-images.githubusercontent.com/44434406/170023423-4cc31747-b855-45c0-be22-7a1c45a2fd7e.png)
 
 Responses:
@@ -93,6 +100,7 @@ Responses:
  
 8. Percents of topic interest (GET)
 http://127.0.0.1:8080/reservations/getTopicInterest
+
 ![image](https://user-images.githubusercontent.com/44434406/170023768-bd13b629-15ba-46a0-afd0-f623a0206df7.png)
 
 Responses:
