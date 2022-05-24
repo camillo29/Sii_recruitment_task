@@ -20,8 +20,8 @@ Server runs on port 8080 by default, You can change it in application.properties
 ###### 2. Open project directory with command prompt and execute "mvn test"
 ![image](https://user-images.githubusercontent.com/44434406/170018218-d1ac541b-bc0e-4629-a577-dd573448f45b.png)
 
-## URL Readme
-# Example URLs to REST services in Postman:
+# URL Readme
+## Example URLs to REST services in Postman:
 
 ###### 1. Conference plan (GET)
 http://127.0.0.1:8080/prelections/conferencePlan
