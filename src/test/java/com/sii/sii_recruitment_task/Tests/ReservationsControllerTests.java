@@ -48,10 +48,7 @@ public class ReservationsControllerTests {
     @Test
     public void givenOKMakeReservationRequestWithExistingUser_whenMakeReservation_thenStatus201(){
         try{
-            MakeReservationRequest request = new MakeReservationRequest();
-            request.setPrelectionId(9L);
-            request.setLogin("login2");
-            request.setEmail("email2@com.pl");
+            MakeReservationRequest request = new MakeReservationRequest(9L, "login2", "email2@com.pl");
             mvc.perform(post("/reservations/makeReservation")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -65,10 +62,8 @@ public class ReservationsControllerTests {
     @Test
     public void givenOKMakeReservationRequestWithNewUser_whenMakeReservation_thenStatus201(){
         try{
-            MakeReservationRequest request = new MakeReservationRequest();
-            request.setPrelectionId(3L);
-            request.setLogin("login10");
-            request.setEmail("email10@com.pl");
+            MakeReservationRequest request = new MakeReservationRequest(
+                    3L,"login10", "email10@com.pl");
             mvc.perform(post("/reservations/makeReservation")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -82,10 +77,8 @@ public class ReservationsControllerTests {
     @Test
     public void givenWrongMakeReservationRequestWithWrongPrelection_whenMakeReservation_thenStatus404(){
         try{
-            MakeReservationRequest request = new MakeReservationRequest();
-            request.setPrelectionId(18L);
-            request.setLogin("login1");
-            request.setEmail("email1@com.pl");
+            MakeReservationRequest request = new MakeReservationRequest(
+                    18L, "login1", "email1@com.pl");
             mvc.perform(post("/reservations/makeReservation")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -99,10 +92,8 @@ public class ReservationsControllerTests {
     @Test
     public void givenWrongMakeReservationRequestWithNoPlace_whenMakeReservation_thenStatus409(){
         try{
-            MakeReservationRequest request = new MakeReservationRequest();
-            request.setPrelectionId(1L);
-            request.setLogin("login10");
-            request.setEmail("email10@com.pl");
+            MakeReservationRequest request = new MakeReservationRequest(
+                    1L, "login10", "email10@com.pl");
             mvc.perform(post("/reservations/makeReservation")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -116,10 +107,8 @@ public class ReservationsControllerTests {
     @Test
     public void givenWrongMakeReservationRequestWithNewUserWithUsedLogin_whenMakeReservation_thenStatus409(){
         try{
-            MakeReservationRequest request = new MakeReservationRequest();
-            request.setPrelectionId(9L);
-            request.setLogin("login5");
-            request.setEmail("email10@com.pl");
+            MakeReservationRequest request = new MakeReservationRequest(
+                    9L,"login5", "email10@com.pl");
             mvc.perform(post("/reservations/makeReservation")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -133,10 +122,8 @@ public class ReservationsControllerTests {
     @Test
     public void givenWrongMakeReservationRequestWithAlreadyReservedHour_whenMakeReservation_thenStatus409(){
         try{
-            MakeReservationRequest request = new MakeReservationRequest();
-            request.setPrelectionId(2L);
-            request.setLogin("login1");
-            request.setEmail("email1@com.pl");
+            MakeReservationRequest request = new MakeReservationRequest(
+                    2L, "login1", "email1@com.pl");
             mvc.perform(post("/reservations/makeReservation")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))
@@ -150,9 +137,7 @@ public class ReservationsControllerTests {
     @Test
     public void givenWrongMakeReservationRequestWithEmptyFields_whenMakeReservation_thenStatus400(){
         try{
-            MakeReservationRequest request = new MakeReservationRequest();
-            request.setPrelectionId(5L);
-            request.setEmail("email1@com.pl");
+            MakeReservationRequest request = new MakeReservationRequest(5L, null, "email1@com.pl");
             mvc.perform(post("/reservations/makeReservation")
                     .contentType("application/json")
                     .content(new Gson().toJson(request)))

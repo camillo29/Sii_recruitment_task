@@ -13,5 +13,4 @@ public interface UserService {
     void validateUser(User user, String email, Time startHour) throws Exception;
     User save(User user);
     User changeMail(String login, ChangeMailRequest request) throws ResponseStatusException;
-    Long getNumberOfUsers();
 }

@@ -55,8 +55,4 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Override
-    public Long getNumberOfUsers() {
-        return (long) getUsers().size();
-    }
 }
